@@ -1,13 +1,10 @@
 <?php
 
-class Products {
+class Home {
     public function index()
     {
-        require_once  'src/models/Product.php';
-
-        $model = new Product();
-        $products = $model->getData();
-        require_once 'views/product_index.php';
+        echo 'home controller';
+       require_once 'views/home_index.php';
     }
 
     // to show a single product
