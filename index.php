@@ -1,8 +1,16 @@
 <?php
 
 
-$action = $_GET['action'];
-$controller = $_GET['controller'];
+// to get the path without the query string
+$path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+
+$segments = explode('/', $path);
+
+
+
+// getting the controller based on the segment url instead of the get
+$action = $segments[2];
+$controller = $segments[1];
 
 /*
  * require the controller value
