@@ -4,17 +4,14 @@
 $action = $_GET['action'];
 $controller = $_GET['controller'];
 
-if ($controller === 'Products') {
-    require "src/controllers/products.php";
-    $controller_object = new Products();
+/*
+ * require the controller value
+ * depending on the controller that is coming from the get method above
+ */
+require "src/controllers/$controller.php";
 
-} elseif ($controller === 'Home') {
-    require "src/controllers/home.php";
-    $controller_object = new Home();
+// and create controller object
+$controller_obj = new $controller();
 
-}
-if ($action == "index") {
-    $controller_object->index();
-}elseif ($action == "show") {
-    $controller_object->show();
-}
+// return the action depending on the action that come from the get variable
+$controller_obj->$action();
