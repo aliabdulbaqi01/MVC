@@ -14,21 +14,18 @@ class Router
 
     public function match(string $path) :array|bool
     {
-        // ?<name>   or   ?P<name>  or   ?'name'>   all are doing the same
-        // but the first one is the most commonly used
+
         $pattern = '#^/(?<controller>[a-z]+)/(?<action>[a-z]+)$#';
 
-        if(preg_match($pattern, $path, $match)) {
-            echo '<pre>';
-            var_dump($match);
-            echo '</pre>';
-            exit('Match');
+        if(preg_match($pattern, $path, $matches)) {
+            $matches = array_filter($matches, "is_string", ARRAY_FILTER_USE_KEY);
+            return $matches;
         }
-        foreach ($this->routes as $route) {
-            if ($route['path'] === $path) {
-                return $route['params'];
-            }
-        }
+//        foreach ($this->routes as $route) {
+//            if ($route['path'] === $path) {
+//                return $route['params'];
+//            }
+//        }
         return false;
     }
 }
