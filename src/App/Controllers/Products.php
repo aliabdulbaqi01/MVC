@@ -1,9 +1,12 @@
 <?php
 
-class Products {
+namespace App\Controllers;
+use App\models\Product;
+
+class Products
+{
     public function index()
     {
-        require_once  'src/models/Product.php';
 
         $model = new Product();
         $products = $model->getData();
@@ -13,8 +16,7 @@ class Products {
     // to show a single product
     public function show()
     {
-        require_once  'src/models/Product.php';
         echo 'hello show';
-        require_once  'views/product_show.php';
+        require_once 'views/product_show.php';
     }
 }
